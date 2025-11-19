@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  background-color: rgb(212, 231, 248);
+}
+.wrapper {
+  background-color: white;
+  width: 60%;
+  min-width: 600px;
+  max-width: 900px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}
+.wrapper > h1 {
+  text-transform: capitalize;
+}
+.wrapper > form > fieldset {
+  border: none;
+  text-align: left;
+}
+.full{
+    width: 100%;
+}
+input, select{
+    padding: 10px;
+    border-color: rgb(42, 150, 244);
+    background-color: rgb(212, 231, 248);
+}
+.flex{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+.flex> input {
+    flex: 1;
+}
+.btn{
+    background-color:rgb(17, 0, 255);
+    border: none;
+    color: aliceblue;
+    padding: 15px;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    font-weight: 600;
+}

@@ -1,52 +1,58 @@
-// const formLv = document.getElementById('form');
+const root = document.getElementById("root");
 
-// спосіб дістати форму без ідентифікатора
-const [form] = document.forms;
-const login = form.elements.login;
-const password = form.elements.password;
+const section = document.createElement("section");
+section.classList.add("wrapper");
 
-const loginPattern = /^[a-z0-9_-]{5,15}$/;
-const passwordPattern =
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,32}$/;
+const title = document.createElement("h1");
+title.textContent = "gaming tournament entry form";
 
-// console.dir(form)
-// gr3at@3wdsG
+const subtitle = document.createElement("p");
+subtitle.textContent =
+  "Register your players and the titles your team will participate in.";
 
-form.addEventListener('submit', (event) => {
-    form.addEventListener('submit', (event) => {
-    // відміняємо обробку події за замовчуванням
-    event.preventDefault();
+const form = document.createElement("form");
+const teamName = document.createElement("fieldset");
+const teamNameLegend = document.createElement("legend");
+teamNameLegend.textContent = "Team name";
+const teamNameInput = document.createElement("input");
+teamNameInput.classList.add("full");
+teamNameInput.setAttribute('name', 'teamName')
 
-    const login = form.elements.login.value.trim();
-    const password = form.elements.password.value.trim();
 
-    if (loginPattern.test(login) && passwordPattern.test(password)) {
-        form.submit();
-        alert('data send, thanks!');
-        return;
-    }
+const teamCoach = document.createElement("fieldset");
+const teamCoachLegend = document.createElement("legend");
+teamCoachLegend.textContent = "Team coach";
+const teamCoachInputFirst = document.createElement("input");
+teamCoachInputFirst.setAttribute("placeholder", "First");
+const teamCoachInputSecond = document.createElement("input");
+teamCoachInputSecond.setAttribute("placeholder", "Last");
+teamCoach.classList.add("flex");
 
-    alert('enter right login or password');
+const country = document.createElement("fieldset");
+const countryLegend = document.createElement("legend");
+countryLegend.textContent = "Country of origin";
+
+const countrySelect = document.createElement("select");
+countrySelect.classList.add("full");
+
+const countries = ["Ukraine", "Poland", "France"];
+countries.forEach((country) => {
+  const opt = document.createElement("option");
+
+  opt.value = country;
+  opt.textContent = country;
+  countrySelect.append(opt);
 });
 
-});
-login.addEventListener('focus', () => {
-    login.style.backgroundColor = '#00ff0029';
-});
+const button = document.createElement('button');
+button.textContent = 'Submit Form';
+button.classList.add('btn')
+button.type = 'submit'
 
-login.addEventListener('blur', () => {
-    const loginValue = login.value.trim();  
-});
 
-login.addEventListener('input', () => {
-    const cirilic = /[А-Яа-я]+/;;
-    const loginValue = login.value.trim();
-
-    if (cirilic.test(loginValue)) {
-        login.style.fontSize = '30px';
-    } else {
-        login.style.fontSize = '';
-    }
-
-    login.style.backgroundColor = 'yellow';
-});
+country.append(countryLegend, countrySelect);
+teamCoach.append(teamCoachLegend, teamCoachInputFirst, teamCoachInputSecond);
+teamName.append(teamNameLegend, teamNameInput);
+form.append(teamName, teamCoach, country, button);
+section.append(title, subtitle, form);
+root.append(section);
